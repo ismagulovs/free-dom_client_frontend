@@ -1,0 +1,48 @@
+<div class="offset-1 mt-5 pt-lg-4 row">
+  <div class="login-form col-lg-4 text-center p-3 bg-white">
+    <br>
+    <input type="text" class="form-control text-center" placeholder="Логин" (focus)="clearErr()" #l><br>
+    <input type="password" class="form-control text-center" placeholder="Пароль" (focus)="clearErr()" #p><br>
+    <div class="form-group text-sm-center" *ngIf="msgError!=null">
+      <label class=" text-red">{{msgError}}</label>
+    </div>
+    <button type="button" class="btn btn-block login-btn" (click)="login(l.value, p.value)"><b>войти</b></button>
+    или
+    <button type="button" class="btn btn-block reg-btn"><small>Восстановить пароль</small></button>
+
+    <div class="text-left mt-3 p-1" style="line-height: 1.0em; border: 1px #d4d4d9 solid">
+      <div class="text-center mb-2" style="font-size: 18px"><b>Рекомендации кооператива</b></div>
+      <span style="font-size: 12px;"> Для входа в My Free-DOM требуются только имя пользователя и пароль.
+      Не сообщайте никому эти данные, нигде не оставляйте их в записанном виде.
+      Убедитесь, что телефон, на который вы получаете пароли для подтверждения операций,
+      доступен только вам. Не реагируйте на СМС,
+      в которых вас просят перезвонить и сообщить персональные данные для разблокировки аккаунта.
+        Сотрудники кооператива никогда не запрашивают подобную информацию.</span>
+    </div>
+  </div>
+  <div class="col-lg-7 login-info-2 text-sm-left text-center">
+    <h1><b>Простой и удобный мобильный кооператив</b></h1>
+    <div>
+      <button type="button" class="btn btn-lg lg-btn m-2 pl-5 pr-5 pt-3 pb-3 text-white" style="background-color: #ff1d32">Подробнее</button>
+      <button type="button" class="btn btn-lg lg-btn m-2 pl-5 pr-5 pt-3 pb-3 bg-white">Стать клентом</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-12 bg-white login-footer pt-2 pb-2" style="border-top: 1px black solid">
+  <div class="row">
+    <div class="offset-sm-2 pl-5 pl-sm-0 col-6 col-sm-4 pt-1">
+      <span class="mr-4">МЫ В СОЦИАЛЬНЫХ СЕТЯХ:</span>
+      <fa name="vk" class="icon-social" size="lg"></fa>
+      <fa name="facebook" class="icon-social"  size="lg"></fa>
+      <fa name="instagram" class="icon-social" size="lg"></fa>
+      <fa name="odnoklassniki-square" class="icon-social" size="lg"></fa>
+      <fa name="youtube" class="icon-social" size="lg"></fa>
+    </div>
+    <div class="offset-sm-1 col-6 col-sm-4 text-center">
+      <b>Доступно в</b>
+      <img src="assets/img/app-store.png" class="ml-sm-4" height="35">
+      <img src="assets/img/google-play.png" class="ml-sm-4" height="35">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="col-12  text-center">
+  <main class="main container">
+    <div class="row">
+      <div class="main-title col-3">
+        <h3>Приоритетные</h3>
+      </div>
+      <div class="offset-sm-2 col-sm-7  offset-md-5 col-md-4">
+        <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" (keydown)="search(searchInp.value)" #searchInp>
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: red; color: white" id="inputGroup-sizing-sm">поиск</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-info">
+      <div class="turn-tablemy">
+        <div class="ov">
+          <table width="100%" cols="5" align="center" border="4" cellpadding="15px" cellspacing="5" style="padding:15px;border:0;" >
+            <tr>
+              <th class="text-center">#</th>
+              <th class="text-center">ФИО</th>
+              <th class="text-center">Дата приобретения статуса</th>
+            </tr>
+            <tr *ngFor="let clientTurn of clientsTurnListFilter; index as i" class="color-{{clientTurn?.ord_status}}">
+              <td>{{i+1}} <input type="hidden" value="{{i+1}}" #ord></td>
+              <td>{{clientTurn?.fio}}</td>
+              <td>{{clientTurn?.date_status_update | date: 'dd.MM.yyyy'}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

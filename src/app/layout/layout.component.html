@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand ml-lg-5" href="#"><img src="assets/img/freedom-logo.png" alt="" class="logo-img"></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto ml-lg-5 pl-lg-5">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Главная<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/turn">Очередь</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/clients">Проживающие</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/yellow-clients">Приоритетный</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/prof">Мой профиль</a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="cabinet.length > 1">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          пай {{cabinetActive}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <button class="dropdown-item" *ngFor="let item of cabinet; index as i" (click)="onCabinet(item[0])" >Пай №{{i+1}}</button>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline row">
+      <div class="text-sm-center prof col-3" style="font-size: 14px">
+        остаток на балансе: <b>{{ost}} тг</b>
+      </div>
+      <div class="text-right prof col-8">
+        <div>
+          <h6><b>{{clientInfo?.fio}}</b></h6>
+          <a href="#" (click)="exit()">Выйти</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

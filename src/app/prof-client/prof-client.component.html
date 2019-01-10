@@ -1,0 +1,185 @@
+
+<div class="col-12 ">
+  <main class="main container-my">
+    <div class="main-title">
+      <h3>Мой профиль</h3>
+    </div>
+    <div class="main-info">
+      <div class="info-block-1">
+        <div>
+          <h5 class="label-my">ИИН</h5>
+          <p class="label-info-my">{{clientInfo?.iin}}</p>
+        </div>
+        <div >
+          <h5 class="label-my">Телефон</h5>
+          <p class="label-info-my">{{clientInfo?.phone}}</p>
+        </div>
+        <div>
+          <h5 class="label-my">Стоимость жилья</h5>
+          <p class="label-info-my">{{clientInfo?.price|number:'1.0-0'}} тг.</p>
+        </div>
+      </div>
+      <div class="info-block-2">
+        <div>
+          <h5 class="label-my">Номер договора</h5>
+          <p class="label-info-my">{{clientInfo?.num_dogovor}}</p>
+        </div>
+        <div>
+          <h5 class="label-my">Дата вступления</h5>
+          <p class="label-info-my">{{clientInfo?.date_entry| date: 'dd.MM.yyyy'}}</p>
+        </div>
+      </div>
+      <div class="info-block-3">
+        <div>
+          <h5 class="label-my">Срок рассрочки</h5>
+          <p class="label-info-my">{{clientInfo?.term}}</p>
+        </div>
+        <div>
+          <h5 class="label-my">Остаток задолженности</h5>
+          <p class="label-info-my">{{(clientInfo?.price - clientInfo?.sum)|number:'1.0-0'}} тг.</p>
+        </div>
+        <div>
+          <h5 class="label-my"></h5>
+          <p class="label-info-my"><button class="btn btn-outline-warning btn-block btn-sm text-dark" data-toggle="modal" data-target="#exampleModal">Сменить пароль</button></p>
+        </div>
+      </div>
+    </div>
+    <div class="main-info payment">
+      <div class="payment-block-1">
+        <div class="block-label">
+          <h5 class="label-my">Последний платеж</h5>
+          <p class="payment-info">{{clientInfo?.last_pay| date: 'dd.MM.yyyy'}}</p>
+        </div>
+      </div>
+      <div class="payment-block-2">
+        <div class="block-label">
+          <h5 class="label-my">Следующий платеж</h5>
+          <p class="payment-info">{{nextPayDate}}</p>
+        </div>
+      </div>
+      <div class="payment-block-3">
+        <div class="block-label">
+          <h5 class="label-my">К оплате</h5>
+          <!--<p class="payment-info" *ngIf="clientInfo?.status==1">{{(ost<40000?40000:ost)|number:'1.0-0'}} тг.</p>-->
+          <p class="payment-info" *ngIf="clientInfo?.status==1">{{(ost>=0?ost<40000?40000:ost:clientDetailInfo?.month_pay<40000?40000:clientDetailInfo?.month_pay)|number:'1.0-0'}} тг.</p>
+          <p class="payment-info" *ngIf="clientInfo?.status!=1">{{(ost>=0?ost:clientDetailInfo?.month_pay)|number:'1.0-0'}} тг.</p>
+        </div>
+      </div>
+      <div class="payment-block-4">
+        <div class="block-label">
+          <!--<h5 class="label-my">Выберите способ оплаты</h5>-->
+          <!--<div class="label-info-my">-->
+            <!--<form name="bank-card">-->
+              <!--<input type="radio" name="card" value="qiwi">-->
+              <!--<input type="radio" name="card" value="visa">-->
+              <!--<input type="radio" name="card" value="mastercard">-->
+              <!--<input type="radio" name="card" value="webmoney">-->
+              <!--<input type="submit" name="card-send" value="Оплатить">-->
+            <!--</form>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </div>
+
+    <div class="main-info">
+      <button class="btn bg-red btn-block" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Таблица оплаты
+      </button>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <!--<div class="pay-block-1 col-12 text-center" *ngFor="let payChart of payCharts">-->
+            <!--<span *ngIf="payChart.type==1">Пополнение <b>{{payChart.summ| number:'1.0-0'}} тг.</b> <i>{{payChart.date}}</i></span>-->
+            <!--<span *ngIf="payChart.type==2" class="text-danger">Списание <b>{{payChart.summ| number:'1.0-0'}} тг.</b> <i>{{payChart.date}}</i></span>-->
+          <!--</div>-->
+
+          <div class="pay-chart row justify-content-between col-12 text-center border-bottom mt-2" *ngFor="let payChart of payCharts">
+            <div class="col-md-4">{{payChart.type==1?'Пополнение':'Списание'}}</div>
+            <div class="col-md-4">дата: {{payChart.date}}г.</div>
+            <div class="col-md-4 text-success" *ngIf="payChart.type==1">{{payChart.summ| number:'1.0-0'}} тг.</div>
+            <div class="col-md-4 text-danger" *ngIf="payChart.type==2">-{{payChart.summ| number:'1.0-0'}} тг.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<ngb-accordion #acc="ngbAccordion">-->
+      <!--<ngb-panel id="toggle-1" title="Таблица оплаты">-->
+        <!--<ng-template ngbPanelContent>-->
+          <!--<button type="button" class="btn btn-sm btn-info" (click)="print(1)">Скачать pdf</button>-->
+          <!--<table class="table table-bordered table-striped">-->
+            <!--<thead>-->
+            <!--<tr><th>За какой месяц</th><th>Оплаченная сумма</th><th>Дата оплаты</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr *ngFor="let pay of payList">-->
+              <!--<td class="text-center">-->
+                <!--<span *ngIf="pay.month==1">январь</span>-->
+                <!--<span *ngIf="pay.month==2">февраль</span>-->
+                <!--<span *ngIf="pay.month==3">март</span>-->
+                <!--<span *ngIf="pay.month==4">апрель</span>-->
+                <!--<span *ngIf="pay.month==5">май</span>-->
+                <!--<span *ngIf="pay.month==6">июнь</span>-->
+                <!--<span *ngIf="pay.month==7">июль</span>-->
+                <!--<span *ngIf="pay.month==8">август</span>-->
+                <!--<span *ngIf="pay.month==9">сентябрь</span>-->
+                <!--<span *ngIf="pay.month==10">октябрь</span>-->
+                <!--<span *ngIf="pay.month==11">ноябрь</span>-->
+                <!--<span *ngIf="pay.month==12">декабрь</span>-->
+              <!--</td>-->
+              <!--<td class="text-center">{{pay?.paySum}}</td>-->
+              <!--<td class="text-center">{{pay?.payDate | date: 'dd.MM.yyyy'}}</td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+          <!--</table>-->
+        <!--</ng-template>-->
+      <!--</ngb-panel>-->
+    <!--</ngb-accordion>-->
+  </main>
+</div>
+
+<!--<ng-template #content let-modal>-->
+  <!--<div class="modal-header">-->
+    <!--<h4 class="modal-title">Смена пароля</h4>-->
+    <!--<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">-->
+      <!--<span aria-hidden="true">&times;</span>-->
+    <!--</button>-->
+  <!--</div>-->
+  <!--<div class="modal-body">-->
+    <!--<p>Введите новый пароль</p>-->
+    <!--<div class="input-group mb-3">-->
+      <!--<input type="text" class="form-control" aria-describedby="button-addon1" #p placeholder="введите новый пароль">-->
+      <!--<div class="input-group-append">-->
+        <!--<button class="btn btn-info" type="button" id="button-addon1" [disabled]="p.value.length<4" (click)="upPass(p.value)">Сохранить</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="modal-footer">-->
+    <!--<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Отмена</button>-->
+  <!--</div>-->
+<!--</ng-template>-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Смена пароля</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Введите новый пароль </p>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" #passwd placeholder="введите новый пароль">
+          <div class="input-group-append">
+            <button class="btn btn-info" type="button" id="button-addon1" (click)="upPass(passwd.value)">Сохранить</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-dismiss="modal">Отмена</button>
+      </div>
+    </div>
+  </div>
+</div>

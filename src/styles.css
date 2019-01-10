@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+.bg-red{
+  background-color: #ff0000 !important;
+  color: white !important;
+}
+.bg-white{
+  background-color: white !important;
+  color: black !important;
+}
+
+.text-black{
+  color: black !important;
+}
+
+@media (max-width: 500px) {
+  .container-fluid{
+    margin: 5px !important;
+    padding: 5px !important;
+  }
+  .col-12{
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .main-info{
+    padding: 10px 15px 5px !important;
+  }
+  td{
+    text-align: center !important;
+    color: #000000 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 200 !important;
+    line-height: 12px !important;
+  }
+  table{
+    padding:5px !important;
+  }
+
+  th{
+    color: #7d7d7d !important;
+    font-family:'Montserrat', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+  }
+}
+
+@media (min-width: 500px) {
+  td{
+    text-align: center !important;
+    color: #000000 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 18px !important;
+  }
+  table{
+    padding:15px !important;
+    border:0 !important;
+  }
+
+  th{
+    color: #7d7d7d !important;
+    font-family:'Montserrat', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+  }
+}

@@ -1,0 +1,67 @@
+<div class="col-12 text-center">
+  <main class="main container">
+    <div class="row">
+      <div class="main-title col-3">
+        <h3>Очередь</h3>
+      </div>
+      <div class="offset-sm-2 col-sm-7  offset-md-5 col-md-4">
+        <div class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" (keydown)="search(searchInp.value)" #searchInp>
+          <div class="input-group-prepend">
+            <span class="input-group-text" style="background-color: red; color: white" id="inputGroup-sizing-sm">поиск</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-info">
+      <div class="turn-info">
+        <div class="block-label">
+          <h5 class="labelmy">Ваша очередь</h5>
+          <p class="label-infomy">Вы на <span class="red">{{ord}}</span> месте</p>
+        </div>
+      </div>
+      <div class="turn-point">
+        <div class="block-label">
+          <p class="label-infomy">Нужно собрать: <span class="red">{{price}}</span></p>
+          <!--<p class="label-infomy">На счету: <span class="red">{{clientSaveInfo?.sum - clientSaveInfo?.price}} ({{clientSaveInfo?.sum-clientSaveInfo?.price<0?0:(clientSaveInfo?.sum/(clientSaveInfo?.price+price))*100 | number:'1.2-2'}}%)</span></p>-->
+          <p class="label-infomy">На счету: <span class="red">{{clientSaveInfo?.sum - clientSaveInfo?.price}} ({{((clientSaveInfo?.sum-clientSaveInfo?.price)/(price))*100 | number:'1.2-2'}}%)</span></p>
+        </div>
+      </div>
+      <div class="turn-client">
+        <div class="block-label">
+          <p class="label-infomy">ФИО: {{saveClietn?.fio}}</p>
+          <p class="text-sm-center">
+            <small class="text-red"> <b>красных:{{cnt_red}}</b> </small>
+            <small class="text-black"> <b>белых:{{cnt_white}}</b></small>
+            <small class="text-yellow"> <b>желтых:{{cnt_yellow}}</b></small>
+          </p>
+          <!--<p class="label-infomy">На счету: <span class="red">{{clientSaveInfo?.sum}} ({{(clientSaveInfo?.sum/clientSaveInfo?.price)*100| number:'1.2-2'}}%)</span></p>-->
+        </div>
+      </div>
+      <div class="turn-tablemy">
+        <div class="ov">
+          <table width="100%" cols="5" align="center" border="4" cellpadding="15px" cellspacing="5" style="padding:15px;border:0;" >
+            <tr>
+              <th class="text-center">#</th>
+              <th class="text-center">ФИО</th>
+              <th class="text-center">Дата контракта</th>
+              <th class="text-center">Сумма будущего жилья</th>
+              <th class="text-center">Сумма паенакопления</th>
+              <th class="text-center">Проценты</th>
+            </tr>
+            <tr *ngFor="let clientTurn of clientsTurnListFilter; index as i" class="color-{{clientTurn?.ord_status}} {{clientTurn.id==clientSaveInfo?.client_id?'client-save':''}}">
+              <td>{{i+1}} <input type="hidden" value="{{i+1}}" #ord></td>
+              <td *ngIf="clientTurn?.id==clientSaveInfo?.client_id"><span class="badge badge-primary" style="font-size: 14px">{{clientTurn?.fio}}</span></td>
+              <td *ngIf="clientTurn?.id!=clientSaveInfo?.client_id">{{clientTurn?.fio}}</td>
+              <td >{{clientTurn?.date_entry | date: 'dd.MM.yyyy'}}</td>
+              <td>{{clientTurn?.price|number:'1.0-0'}}</td>
+              <td>{{clientTurn?.sum_pay|number:'1.0-0'}}</td>
+              <td>{{(clientTurn?.sum_pay/clientTurn?.price)*100 |number:'1.0-0'}}%</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

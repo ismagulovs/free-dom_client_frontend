@@ -1,0 +1,85 @@
+.card-img-top {
+  opacity: 6.3;
+  height: 200px;
+}
+
+.sleder-div{
+  max-height: 500px;
+  margin-bottom: 20px;
+}
+
+.darkened {
+  /*position: relative;*/
+}
+
+.darkened::before {
+  /*background:black; opacity:0.5;*/
+}
+
+.news-title{
+  /*background-color: rgba(0, 0, 0, 0.39);*/
+}
+
+.title-news{
+  position: absolute;
+  z-index: 999999;
+}
+.to-bottom {position:absolute; bottom:10px;}
+
+.card-img-top{
+  /*border-radius: 0 0 8px 8px;*/
+}
+
+.fon-img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: rgba(79, 63, 79, 0.43);
+}
+.darkened {
+  position: relative;
+}
+
+.darkened::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.51);
+  z-index: 1;
+}
+.custom-control-label::before{
+  border: 3px solid red;
+}
+
+
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before{
+  background-color:red;
+}
+.custom-radio .custom-control-input:checked~.custom-control-label::after{
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='red' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+}
+
+.right-news-list{
+  max-height: 1000px;
+}
+
+
+
+@media (max-width: 500px) {
+  .carousel-caption{
+    bottom: 0px !important;
+  }
+  .d-none h2 {
+    font-size: 14px;
+  }
+}
+@media (min-width: 500px) {
+  .carousel-caption{
+    bottom: 30% !important;
+  }
+}

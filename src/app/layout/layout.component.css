@@ -1,0 +1,57 @@
+:host{
+  background-color: red;
+}
+
+.navbar-brand{
+  background-color: rgba(241,248,247,0.17);
+}
+
+.nav-link{
+  /*background-color: rgba(69, 57, 67, 0.34);*/
+  font-size: 14px;
+  color: black;
+  padding-top: 17px;
+  /*padding-bottom: 15px;*/
+  border-radius: 0 0 5px 5px;
+  margin: 0px;
+  margin-left: 10px;
+}
+.nav-item:hover .nav-link{
+  color: rgb(239, 50, 33);
+  /*color: white;*/
+}
+
+.nav-item .nav-link{
+  background-color: rgba(241, 248, 247, 0.62);
+  color: black;
+  font-weight: 600;
+  border-radius: 0 0 2px 2px;
+}
+
+.dropdown-item:hover{
+  background-color: rgba(190, 20, 12, 0.74);
+}
+.logo img{
+  padding: 10px 5px 10px 5px;
+  /*background-color: #F1F8F7;*/
+  border-radius: 0 0 5px 5px;
+}
+
+.prof{
+  /*background-color: rgba(69, 57, 67, 0.34);*/
+  border-radius: 0 0 10px 10px;
+}
+
+@media (max-width: 991px) {
+  .logo-img{
+    width: 120px;
+  }
+  .nav-link{
+    width: 90%;
+  }
+}
+@media (min-width: 991px) {
+  .logo-img{
+    width: 180px;
+  }
+}
