@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@media (max-width: 800px) {
+  body{
+    background: #f6f4f9 none !important;
+  }
+}
 .bg-red{
   background-color: #ff0000 !important;
   color: white !important;
